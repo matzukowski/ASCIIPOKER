@@ -1,41 +1,31 @@
 ﻿#include <iostream>
 #include "Deck.h"
+#include "Game.h"
+#include "Display.h"
 #include <conio.h>
 #include <windows.h>
 
 int main() {
-    Deck deck;
-    deck.getNewDeck();
-
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
-    int i = 1;
 
     while (true) {
+        Game game = Game();
 
-        if (deck.isEmpty()) {
-            std::cout << "\033[J";
-            std::cout << "DECK EMPTY! STARTING NEW DECK!";
+        game.setup();
 
-            i = 1;
+        Display::printPlayer(game.getPlayers()[0], 0);
+        Display::printPlayer(game.getPlayers()[1], 1);
+        Display::printPlayer(game.getPlayers()[2], 2);
+        Display::printPlayer(game.getPlayers()[3], 3);
+        Display::printPlayer(game.getPlayers()[4], 4);
 
-            deck.getNewDeck();
-
-            int ch = _getch();
-            if (ch == 0 || ch == 224) _getch();
-
-            std::cout << "\033[H";
-            std::cout << "\033[J";
-
-
-        }
-        Card card = deck.drawCard();
-        std::cout << card.getAsciiArt() << "\n\n" << i++;
+        // TODO: move display calls to game
+        
+        //game.dealCommunityCards(3);
 
         int ch = _getch();
-        if (ch == 0 || ch == 224) _getch();
-
-        std::cout << "\033[H";
+        if (ch == 0 || ch == 224) ch = _getch();
     }
 
     return 0;

@@ -17,9 +17,10 @@ private:
 public:
     Game();
 
+    const std::vector<Player>& getPlayers() const;
+
     void setup();
     void dealHoleCards();
     void dealCommunityCards(int count);
     void bettingRound();
-    void play();
 };

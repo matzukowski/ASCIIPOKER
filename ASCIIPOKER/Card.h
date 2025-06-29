@@ -38,5 +38,4 @@ public:
     std::string getSuitSymbol() const;
     std::string getRankSymbol() const;
     std::string toString() const;
-    std::string getAsciiArt() const;
 };

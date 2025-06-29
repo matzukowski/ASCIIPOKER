@@ -3,11 +3,15 @@
 
 Game::Game() : pot(0), smallBlind(10), bigBlind(20), currentBet(0) {}
 
+const std::vector<Player>& Game::getPlayers() const{
+    return players;
+}
+
 void Game::setup() {
-    players.emplace_back("You", false, 1000);
     for (int i = 1; i < 5; ++i) {
         players.emplace_back("Bot" + std::to_string(i), true, 1000);
     }
+    players.emplace_back("You", false, 1000);
 }
 
 void Game::dealHoleCards() {
@@ -30,16 +34,4 @@ void Game::dealCommunityCards(int count) {
 void Game::bettingRound() {
 
     throw std::runtime_error("not implemented");
-}
-
-void Game::play() {
-    setup();
-    dealHoleCards();
-    bettingRound();
-    dealCommunityCards(3);
-    bettingRound();
-    dealCommunityCards(1);
-    bettingRound();
-    dealCommunityCards(1);
-    bettingRound();
 }
